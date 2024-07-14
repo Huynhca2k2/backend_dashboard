@@ -1,17 +1,23 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const port = 8080;
+const path = require("path");
+const port = process.env.PORT || 8080;
+const url_Frontend = process.env.URL_FRONTEND || "http://localhost:3000";
 
 const route = require("./src/routers");
 const db = require("./src/config/db");
 
+//cau hinh chia se va hien thi cac file trong thu muc public
+app.use("/public", express.static(path.join(__dirname, "public")));
+
 //su dung middleware cors
 app.use(
   cors({
-    origin: ["http://localhost:3000"],
-    methods: "GET,PATCH,POST,DELETE",
+    origin: [url_Frontend],
+    methods: "GET,PATCH,PUT,POST,DELETE",
     credentials: true,
   })
 );
@@ -27,5 +33,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`app listening on port ${port}`);
 });

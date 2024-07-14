@@ -1,17 +1,13 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
+const db_url = process.env.DB_URL || "mongodb://localhost:27017/dashboard";
 
 async function connect() {
   try {
-    await mongoose.connect(
-      "mongodb+srv://huynhca2k2:0947079663Aa@cluster0.nya944o.mongodb.net/dashboard",
-      {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      }
-    );
-    console.log("connect db successfully!!!");
+    await mongoose.connect(db_url);
+    console.log("Connected to MongoDB successfully!!!");
   } catch (error) {
-    console.log("connect db fail: ");
+    console.error("Failed to connect to MongoDB:", error.message);
   }
 }
 

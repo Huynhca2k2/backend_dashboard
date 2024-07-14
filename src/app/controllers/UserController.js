@@ -1,4 +1,7 @@
 const User = require("../models/User");
+const upload = require("../middleware/upload");
+require("dotenv").config();
+const api_url = process.env.API_URL || "http://localhost:8080";
 
 class UserController {
   //get all user
@@ -14,7 +17,6 @@ class UserController {
   //create user
   async createUser(req, res) {
     try {
-      console.log("Kết quả của body: ", req.body);
       const newUser = await User.create(req.body);
       res.status(201).json(newUser);
     } catch (err) {
@@ -62,6 +64,18 @@ class UserController {
       res.json({ message: "User deleted successfully" });
     } catch (err) {
       res.status(400).json({ error: err.message });
+    }
+  }
+
+  // Upload file anh va tra ve url file
+  async uploadImage(req, res) {
+    try {
+      res.status(200).json({
+        message: "File uploaded successfully!",
+        image_url: `${api_url}/public/images/${req.file.filename}`,
+      });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
   }
 }
