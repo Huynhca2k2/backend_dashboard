@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon --inspect index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Huynhca2k2/backend_dashboard.git"
+  },
+  "keywords": [
+    "dashboard",
+    "test",
+    "api"
+  ],
+  "author": "huynh ca",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Huynhca2k2/backend_dashboard/issues"
+  },
+  "homepage": "https://github.com/Huynhca2k2/backend_dashboard#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
